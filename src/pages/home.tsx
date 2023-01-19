@@ -39,8 +39,6 @@ function Home() {
       });
   };
 
-  // console.log(forecast);
-
   return (
     <div className="bg-white w-[320px] h-[640px] rounded-3xl shadow-xl flex justify-center items-center">
       <div className="relative w-[300px] h-[620px] rounded-2xl">
@@ -52,7 +50,7 @@ function Home() {
         ) : (
           <></>
         )}
-        <section className="space-y-1 h-3/6 bg-clear_sky_day bg-top bg-fixed bg-no-repeat rounded-xl">
+        <section className="space-y-1 w-full h-3/6 bg-red-300 bg-top bg-fixed bg-no-repeat rounded-xl">
           <Location setCityInputOpen={setCityInputOpen} data={currentWeather} />
           {currentWeather && <CurrentWeather data={currentWeather} />}
         </section>
