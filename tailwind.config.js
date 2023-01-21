@@ -2,7 +2,9 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      animation: ["group-hover"],
+    },
     fontFamily: {
       monsterrat: "sans-serif",
       roboto: "sans-serif",
@@ -12,6 +14,7 @@ module.exports = {
     },
     animation: {
       "spin-slow": "spin 30s linear infinite",
+      bounce: "bounce 1s infinite",
     },
   },
   plugins: [

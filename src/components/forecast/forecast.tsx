@@ -18,9 +18,9 @@ function Forecast({ data }: any) {
   return (
     <div className="container mt-28 h-[180px] rounded-xl">
       <div>
-        <h1 className="font-roboto text-gray-600 ml-1 pt-1 mb-2">Daily</h1>
+        <h1 className="font-roboto text-gray-500 ml-1 pt-2">Daily</h1>
       </div>
-      <div className="h-[160px] mx-1 overflow-y-scroll scrollbar-hide rounded-md">
+      <div className="relative h-[160px] mx-1 overflow-y-scroll scrollbar-hide rounded-md">
         <Accordion allowZeroExpanded>
           {data.list.slice(0, 7).map((item: any, idx: any) => (
             <AccordionItem key={idx} className="">
@@ -46,7 +46,7 @@ function Forecast({ data }: any) {
                 </AccordionItemButton>
               </AccordionItemHeading>
               <AccordionItemPanel>
-                <div className="font-roboto text-gray-600 text-sm mx-3">
+                <div className="font-roboto text-gray-600 text-sm px-3 py-1 rounded-lg bg-gray-100">
                   <div className="relative">
                     <label className="">Pressure</label>
                     <label className="absolute right-2">
