@@ -8,6 +8,7 @@ import Forecast from "../components/forecast/forecast";
 function Home() {
   const [currentWeather, setCurrentWeather] = useState<any | null>(null);
   const [forecast, setForecast] = useState<any | null>(null);
+  const [day, setDay] = useState(false);
 
   const [cityInputOpen, setCityInputOpen] = useState(true);
 
@@ -30,6 +31,8 @@ function Home() {
       .then(async (response) => {
         const weatherResponse = await response[0].json();
         const forecastResponse = await response[1].json();
+
+        console.log(weatherResponse);
 
         setCurrentWeather({ city, ...weatherResponse });
         setForecast({ city, ...forecastResponse });

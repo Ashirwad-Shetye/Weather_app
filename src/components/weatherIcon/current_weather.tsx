@@ -7,12 +7,12 @@ import { SlSpeedometer } from "react-icons/sl";
 function CurrentWeather({ data }: any) {
   console.log(data);
   return (
-    <div className="realtive mx-auto w-full space-y-4 text-center text-white cursor-default">
-      <div className="mx-auto w-fit my-auto flex text-left items-center ">
+    <div className="realtive mx-auto w-full space-y-6 text-center text-white cursor-default">
+      <div className="mx-auto w-fit my-auto flex space-x-5 text-left items-center ">
         <img
           src={`icons/${data.weather[0].icon}.png`}
           alt="weather icon"
-          className="w-36"
+          className="w-[8.4rem]"
         />
         <div>
           <h1 className="text-6xl font-roboto ">

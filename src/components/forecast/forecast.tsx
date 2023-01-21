@@ -23,22 +23,22 @@ function Forecast({ data }: any) {
       <div className="h-[160px] mx-1 overflow-y-scroll scrollbar-hide rounded-md">
         <Accordion allowZeroExpanded>
           {data.list.slice(0, 7).map((item: any, idx: any) => (
-            <AccordionItem key={idx}>
+            <AccordionItem key={idx} className="">
               <AccordionItemHeading>
                 <AccordionItemButton>
-                  <div className="relative border-2 text-gray-600 rounded-lg my-1 h-full flex space-x-3 cursor-pointer items-center">
+                  <div className="relative border-2 border-gray-100 text-gray-600 rounded-lg my-[0.50rem] px-2 h-10 flex space-x-3 cursor-pointer items-center">
                     <img
                       src={`icons/${item.weather[0].icon}.png`}
                       alt=""
-                      className="w-10"
+                      className="w-6 cursor-pointer"
                     />
-                    <label className="h-fit w-8 font-semibold font-monsterrat cursor-default">
+                    <label className="h-fit w-8 font-semibold font-monsterrat cursor-pointer">
                       {forecastDays[idx]}
                     </label>
-                    <label className="text-sm font-roboto cursor-default">
+                    <label className="text-sm font-roboto cursor-pointer">
                       {item.weather[0].description}
                     </label>
-                    <label className="absolute right-2 font-roboto font-bold text-sm">
+                    <label className="absolute right-2 font-roboto font-bold text-sm cursor-pointer">
                       {Math.round(item.main.temp_min)}°c /{" "}
                       {Math.round(item.main.temp_max)}°c
                     </label>
