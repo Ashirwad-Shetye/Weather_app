@@ -8,11 +8,11 @@ function CurrentWeather({ data }: any) {
   console.log(data);
   return (
     <div className="realtive mx-auto w-full space-y-6 text-center text-white cursor-default">
-      <div className="mx-auto w-fit my-auto flex space-x-5 text-left items-center ">
+      <div className="mx-auto w-fit my-auto flex space-x-3 text-left items-center ">
         <img
           src={`icons/${data.weather[0].icon}.png`}
           alt="weather icon"
-          className="w-[8.4rem]"
+          className="w-[7rem] m-3"
         />
         <div>
           <h1 className="text-6xl font-roboto ">

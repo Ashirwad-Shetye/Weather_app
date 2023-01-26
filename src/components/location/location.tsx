@@ -2,7 +2,7 @@ import React from "react";
 import { CiLocationOn } from "react-icons/ci";
 import AddCity from "../header/addCity";
 
-function Location({ setCityInputOpen, data }: any) {
+function Location({ setCityInputOpen, data, handleLocationClick }: any) {
   const today = new Date();
   let date = today.getDate();
 
@@ -26,13 +26,20 @@ function Location({ setCityInputOpen, data }: any) {
   const hour = today.getHours();
   const minute = today.getMinutes();
 
-  // const city = data.city || `badlapur`;
-  const city = `badlapur`;
+  // const current_city = data.main.feels_like;
+  // console.log(current_city);
+
+  let city = "unknown";
+
+  if (data != null) {
+    city = data.city;
+  }
 
   return (
     <div className="w-full px-5 pt-10 flex align-top justify-between text-white">
       <div className="flex space-x-2">
         <button
+          onClick={handleLocationClick}
           className="h-[1.7rem] w-[1.7rem] flex justify-center items-center hover:scale-125
          hover:bg-white hover:bg-opacity-30 rounded-full duration-200"
         >

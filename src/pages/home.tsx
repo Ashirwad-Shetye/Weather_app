@@ -8,7 +8,14 @@ import Forecast from "../components/forecast/forecast";
 function Home() {
   const [currentWeather, setCurrentWeather] = useState<any | null>(null);
   const [forecast, setForecast] = useState<any | null>(null);
-  const [day, setDay] = useState(false);
+
+  const [latitude, setLatitude] = useState<any | null>([]);
+  const [longitude, setLongitude] = useState<any | null>([]);
+
+  navigator.geolocation.getCurrentPosition(function (position) {
+    setLatitude(position.coords.latitude);
+    setLongitude(position.coords.longitude);
+  });
 
   const [cityInputOpen, setCityInputOpen] = useState(true);
 
@@ -42,6 +49,34 @@ function Home() {
       });
   };
 
+  const handleLocationClick = () => {
+    console.log(latitude, longitude);
+
+    const currentWeatherFetch = fetch(
+      `${WEATHER_API_URL}/weather?lat=${latitude}&lon=${longitude}&appid=${OW_KEY}&units=metric`
+    );
+
+    const forecastFetch = fetch(
+      `${WEATHER_API_URL}/forecast?lat=${latitude}&lon=${longitude}&appid=${OW_KEY}&units=metric`
+    );
+
+    Promise.all([currentWeatherFetch, forecastFetch])
+      .then(async (response) => {
+        const weatherResponse = await response[0].json();
+        const forecastResponse = await response[1].json();
+
+        const city = weatherResponse.name;
+
+        console.log(city);
+
+        setCurrentWeather({ city, ...weatherResponse });
+        setForecast({ city, ...forecastResponse });
+      })
+      .catch((err: string) => {
+        console.error(err);
+      });
+  };
+
   return (
     <div className="bg-white w-[320px] h-[640px] rounded-3xl shadow-xl flex justify-center items-center">
       <div className="relative w-[300px] h-[620px] rounded-2xl">
@@ -54,7 +89,11 @@ function Home() {
           <></>
         )}
         <section className="space-y-1 w-full h-3/6 bg-red-300 bg-top bg-fixed bg-no-repeat rounded-xl">
-          <Location setCityInputOpen={setCityInputOpen} data={currentWeather} />
+          <Location
+            setCityInputOpen={setCityInputOpen}
+            data={currentWeather}
+            handleLocationClick={handleLocationClick}
+          />
           {currentWeather && <CurrentWeather data={currentWeather} />}
         </section>
         {forecast && <Forecast data={forecast} />}
