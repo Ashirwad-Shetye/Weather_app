@@ -16,17 +16,20 @@ function Forecast({ data }: any) {
   );
 
   return (
-    <div className="container mt-28 h-[180px] rounded-xl">
+    <div className="mt-[7.6rem] h-[180px] rounded-xl">
       <div>
-        <h1 className="font-roboto text-gray-500 ml-1 pt-2">Daily</h1>
+        <h1 className="font-roboto text-gray-500 ml-1">Daily</h1>
       </div>
-      <div className="relative h-[160px] mx-1 overflow-y-scroll scrollbar-hide rounded-md">
+      <div className="relative h-[160px] mx-1 overflow-y-scroll overflow-x-clip scrollbar-hide rounded-md">
         <Accordion allowZeroExpanded>
           {data.list.slice(0, 7).map((item: any, idx: any) => (
             <AccordionItem key={idx} className="">
               <AccordionItemHeading>
                 <AccordionItemButton>
-                  <div className="relative border-2 border-gray-100 text-gray-600 rounded-lg my-[0.50rem] px-2 h-10 flex space-x-3 cursor-pointer items-center">
+                  <div
+                    className="relative border-2 border-gray-100 text-gray-600 rounded-lg my-[0.50rem] px-2 h-10 flex 
+                  space-x-3 cursor-pointer items-center hover:scale-105 duration-300 hover:shadow-lg"
+                  >
                     <img
                       src={`icons/${item.weather[0].icon}.png`}
                       alt=""
