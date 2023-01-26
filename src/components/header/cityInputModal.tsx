@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { MdClose } from "react-icons/md";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { geoApiOptions, GEO_API_URL } from "../../api/api";
+import { CiLocationOn } from "react-icons/ci";
 
-const CityInputModal = ({ onSearchChange, setCityInputOpen }: any) => {
+const CityInputModal = ({
+  onSearchChange,
+  setCityInputOpen,
+  handleLocationClick,
+}: any) => {
   const [search, setSearch] = useState(null);
 
   const loadOptions = (inputValue: string, callback: any) => {
@@ -31,11 +36,22 @@ const CityInputModal = ({ onSearchChange, setCityInputOpen }: any) => {
   const handleOnChange = (searchData: any) => {
     setSearch(searchData);
     onSearchChange(searchData);
+    setTimeout(() => {
+      setCityInputOpen(false);
+    }, 500);
   };
 
   return (
     <aside className="backdrop-blur-sm bg-slate-700 bg-opacity-40 absolute z-50 w-full h-full rounded-xl flex justify-center">
-      <div className="absolute mt-10 flex space-x-2 justify-center items-center">
+      <button
+        onClick={handleLocationClick}
+        className="absolute flex items-center justify-center space-x-1 text-gray-500 mt-8 bg-white w-[16.4rem] h-8 
+      rounded-md mx-10 bg-opacity-50 hover:bg-opacity-100 duration-200 active:border-4 border-blue-300"
+      >
+        <CiLocationOn className="text-xl" />
+        <h1>Detect Location</h1>
+      </button>
+      <div className="absolute mt-20 flex space-x-2 justify-center items-center">
         <AsyncPaginate
           placeholder="Search for city"
           debounceTimeout={600}

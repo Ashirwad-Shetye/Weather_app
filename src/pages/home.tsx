@@ -75,6 +75,8 @@ function Home() {
       .catch((err: string) => {
         console.error(err);
       });
+
+    setCityInputOpen(false);
   };
 
   return (
@@ -84,6 +86,7 @@ function Home() {
           <CityInputModal
             onSearchChange={handleOnSearchChange}
             setCityInputOpen={setCityInputOpen}
+            handleLocationClick={handleLocationClick}
           />
         ) : (
           <></>

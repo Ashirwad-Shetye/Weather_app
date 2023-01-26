@@ -29,7 +29,7 @@ function Location({ setCityInputOpen, data, handleLocationClick }: any) {
   // const current_city = data.main.feels_like;
   // console.log(current_city);
 
-  let city = "unknown";
+  let city = "Loading...";
 
   if (data != null) {
     city = data.city;
