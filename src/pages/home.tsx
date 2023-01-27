@@ -78,7 +78,9 @@ function Home() {
         ) : (
           <></>
         )}
-        <section className="space-y-1 w-full h-3/6 bg-red-300 bg-top bg-fixed bg-no-repeat rounded-xl">
+        <section
+          className={`space-y-1 w-full h-3/6 bg-red-400 bg-top bg-fixed bg-no-repeat rounded-xl`}
+        >
           <Location
             setCityInputOpen={setCityInputOpen}
             data={currentWeather}
