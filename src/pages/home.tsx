@@ -8,20 +8,16 @@ import Forecast from "../components/forecast/forecast";
 function Home() {
   const [currentWeather, setCurrentWeather] = useState<any | null>(null);
   const [forecast, setForecast] = useState<any | null>(null);
-
   const [latitude, setLatitude] = useState<any | null>([]);
   const [longitude, setLongitude] = useState<any | null>([]);
+  const [cityInputOpen, setCityInputOpen] = useState(true);
 
   navigator.geolocation.getCurrentPosition(function (position) {
     setLatitude(position.coords.latitude);
     setLongitude(position.coords.longitude);
   });
 
-  const [cityInputOpen, setCityInputOpen] = useState(true);
-
   const handleOnSearchChange = (searchData: any) => {
-    console.log(searchData);
-
     const [lat, lon] = searchData.value.split(" ");
 
     const city: string = searchData.label;
@@ -38,9 +34,6 @@ function Home() {
       .then(async (response) => {
         const weatherResponse = await response[0].json();
         const forecastResponse = await response[1].json();
-
-        console.log(weatherResponse);
-
         setCurrentWeather({ city, ...weatherResponse });
         setForecast({ city, ...forecastResponse });
       })
@@ -50,8 +43,6 @@ function Home() {
   };
 
   const handleLocationClick = () => {
-    console.log(latitude, longitude);
-
     const currentWeatherFetch = fetch(
       `${WEATHER_API_URL}/weather?lat=${latitude}&lon=${longitude}&appid=${OW_KEY}&units=metric`
     );
@@ -64,11 +55,7 @@ function Home() {
       .then(async (response) => {
         const weatherResponse = await response[0].json();
         const forecastResponse = await response[1].json();
-
         const city = weatherResponse.name;
-
-        console.log(city);
-
         setCurrentWeather({ city, ...weatherResponse });
         setForecast({ city, ...forecastResponse });
       })

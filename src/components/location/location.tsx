@@ -26,9 +26,6 @@ function Location({ setCityInputOpen, data, handleLocationClick }: any) {
   const hour = today.getHours();
   const minute = today.getMinutes();
 
-  // const current_city = data.main.feels_like;
-  // console.log(current_city);
-
   let city = "Loading...";
 
   if (data != null) {
